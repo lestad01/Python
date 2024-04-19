@@ -27,8 +27,7 @@ elif request.status_code == 404:
 if request:
     print('Success!')
 else:
-    print('An error has occurred')
-""""
+    print('An error has occurred') """"
 
 ##import requests
 
@@ -39,7 +38,6 @@ else:
 ##response.content
 
 
-import requests
 
 """requests.post('https://httpbin.org/post', data={'key':'value'})
 requests.put('https://httpbin.org/put', data={'key':'value'})
@@ -48,14 +46,14 @@ requests.head('https://httpbin.org/get')
 requests.patch('https://httpbin.org/patch', data={'key':'value'})
 requests.options('https://httpbin.org/get') """
 
-# Поиск местонахождения для запросов на GitHub
-response = requests.get(
-    'https://api.github.com/search/repositories',
-    params=[('q': 'requests+language:python')],
-)
+import requests
 
-# Анализ некоторых атрибутов местонахождения запросов
-json_response = response.json()
-repository = json_response['items'][0]
-print(f'Repository name: {repository["name"]}')  # Python 3.6+
-print(f'Repository description: {repository["description"]}')
+
+response = requests.post('https://httpbin.org/post', json={'key':'value'})
+response.request.headers['Content-Type']
+##'application/json'
+
+response.request.url
+##'https://httpbin.org/post'
+
+print(response.request.body)
