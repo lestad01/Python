@@ -32,9 +32,9 @@
 # my_typle = (1,2,3) + my_typle
 # print(my_typle)
 
-my_tuple = ("python", "is", "awesome", [1, 2, 3], 88, ("a", "b", "c"))
+#my_tuple = ("python", "is", "awesome", [1, 2, 3], 88, ("a", "b", "c"))
 
-print(my_tuple.index(88))
+#print(my_tuple.index(88))
 # print(my_tuple)
 # print(id(my_tuple))
 
@@ -44,5 +44,7 @@ print(my_tuple.index(88))
 # print(my_tuple.count("python"))
 # print(my_tuple.count(88))
 
-del my_tuple
-print(my_tuple)
+# del my_tuple
+#print(my_tuple)
+
+#print(2 % 5)
