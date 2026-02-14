@@ -1,4 +1,6 @@
+#from functools import wraps
 from functools import wraps
+from timeit import default_timer
 
 
 def power_number(number, power=2):
@@ -71,19 +73,68 @@ params_kwargs = {
 # print(some_func())
 # print(some_func.__wrapped__)
 
+#
+# def dec_with_one_arg(func):
+#     @wraps(func)
+#     def wrapper(arg):
+#         print("call func", func, "with arg", arg)
+#         result = func(arg)
+#         print("-- result: ", result)
+#         return  result
+#     return  wrapper
+#
+# @dec_with_one_arg
+# def cube (num):
+#     return num ** 3
 
-def dec_with_one_arg(func):
-    @wraps(func)
-    def wrapper(arg):
-        print("call func", func, "with arg", arg)
-        result = func(arg)
-        print("-- result: ", result)
-        return  result
-    return  wrapper
-
-@dec_with_one_arg
-def cube (num):
-    return num ** 3
-
-print(cube(3))
+#
+# print(cube(3))
 #print(cube.__wrapped__)
+
+
+# print(default_timer())
+# print("Hello float {:.3f}".format(123.45678))
+#
+def show_timing(func):
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = default_timer()
+        result = func(*args, **kwargs)
+        end_time = default_timer()
+        total_time = end_time - start_time
+
+        print("Executed func",
+              func,
+              "in {:.10f} sec.".format(total_time),
+              "and got",
+              result,
+            )
+        return result
+    return wrapper
+
+@show_timing
+def power_nums(*nums, power=2):
+    return [n ** power for n in nums]
+
+print(power_nums(3, 2, 1, power = 2))
+
+
+
+@show_timing
+def fib(n):
+    if n < 2:
+        return n
+    else:
+        return  fib(n-1) + fib(n-2)
+print(fib(11))
+
+from functools import lru_cache
+@lru_cache # сохраняет кеширует результат функции из за чего быстрее работает сама функция.
+@show_timing
+def fib(n):
+    if n < 2:
+        return n
+    else:
+        return  fib(n-1) + fib(n-2)
+print(fib(11))
