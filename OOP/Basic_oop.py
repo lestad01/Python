@@ -56,4 +56,21 @@ print(user1)
 print(type(user1))
 print(User.mro())
 
+user1.name = "Johny"
+print("name:", user1.name)
+
+
+# Есть проблемка если создадим user2 = User()
+# у экземпляра user1 есть атрибут name, а user2 есть атрибут name и age
+# у экземпляра user1 нет атрибута age
+user2 = User()
+user2.name = "Sam"
+user2.age = 20
+print("name:", user2.name)
+#print("age:", user1.age)
+
+
+print("user1 dict: ", user1.__dict__)
+print("user2 dict: ", user2.__dict__)
+
 # Создаем атрибуты для нового класса
